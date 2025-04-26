@@ -9,6 +9,7 @@ import StarBorder from '../components/StarBorder';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import AnimatedCounter from '../components/AnimatedCounter';
+
 const Hero = () => {
     useGSAP(() => {
         gsap.fromTo(
@@ -25,9 +26,23 @@ const Hero = () => {
                 ease: 'power2.inOut',
             }
         )
+        gsap.fromTo(
+            '.btnSeeWork',
+            {
+                x: 50,
+                opacity: 0,
+            },
+            {
+                x: 0,
+                opacity: 1,
+                duration: 2,
+                ease: 'power2.inOut',
+            }
+        )
     })
 
     const handleSeeMyWork = () => {
+        console.log("See My Work clicked");
         const target = document.getElementById("counter"); // Find the section with ID "counter"
         const id = 'counter'; // Get the ID of the target element
         // Only scroll if we found the section and an ID is passed in
@@ -45,14 +60,14 @@ const Hero = () => {
 
     return (
         <section id="hero" className="relative overflow-hidden">
-            <div className="absolute top-0 left-0 z-10">
+            <div className="absolute top-0 left-0 z-10 max-w-screen h-screen">
                 <img src="/images/bg.png" alt="background" />
             </div>
 
-            <div className="hero-layout">
+            <div className="relative flex flex-col items-center justify-center w-dvw h-screen bg-cover bg-no-repeat bg-center">
                 {/* /* LEFT: Hero Content */}
-                <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5">
-                    <div className="flex flex-col gap-7">
+                <header className="flex flex-col justify-center w-full max-w-screen md:px-20 px-5 md:z-10 z-1">
+                    <div className="flex flex-col gap-7 w-ful max-w-screen">
                         <div className="hero-text">
                             <h1>Hello!</h1>
                             <h1> My name is DuongNB,</h1>
@@ -76,29 +91,33 @@ const Hero = () => {
                                 </span>
                             </h1>
 
-                            <h1 className='mt-4 text-2xl text-gray-400 font-light text-left'>
+                            <h1 className='mt-4 text-2xl text-gray-400 font-light text-left xl:w-[50%]'>
                                 {description}
                             </h1>
-                        </div>
 
-                        <StarBorder
-                            className="md:w-80 md:h-16 w-60 h-12 transition-transform transform hover:scale-105 cursor-pointer select-none"
-                            as="button"
-                            color="cyan"
-                            speed="5s"
-                            onClick={handleSeeMyWork}
-                        >
-                            <ShinyText text="See My Work" disabled={false} speed={3} className='custom-class' />
-                        </StarBorder>
+                        </div>
+                        <div className="btnSeeWork w-60" onClick={handleSeeMyWork}>
+                            <StarBorder
+                                as="button"
+                                className="w-60"
+                                color="cyan"
+                                speed="5s"
+                            >
+                                <ShinyText text="See My Work" disabled={false} speed={3} />
+                            </StarBorder>
+                        </div>
                     </div>
                 </header>
 
+                <div className='absolute w-full h-full top-145 right-0 xl:w-[60%] xl:-top-20 xl:h-[100vh]'>
+                    <img src="/images/portfolio.png" alt="hero" className="w-full h-full object-contain xl:object-contain xl:mr-0" />
+                </div>
                 {/* RIGHT: 3D Model or Visual */}
-                <figure>
-                    <div className="hero-3d-layout">
+                {/* <figure>
+                    <div className="absolute w-full xl:w-[70%] h-full min-h-[50vh] top-64 xl:-top-20 right-0 xl:-right-20">
                         <HeroExperience />
                     </div>
-                </figure>
+                </figure> */}
             </div>
             <AnimatedCounter />
         </section >

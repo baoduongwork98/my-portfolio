@@ -198,7 +198,10 @@ const showCases = [
         description: "Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend and backend dev are top-notch.",
         tech: "Xamarin, .NET MAUI",
         date: "2023",
-
+        ref: {
+            app_store: "https://apps.apple.com/jp/app/sbi%E8%A8%BC%E5%88%B8-%E5%8F%96%E5%BC%95%E6%89%80cfd-%E3%82%A2%E3%83%97%E3%83%AA-%E3%81%8F%E3%82%8A%E3%81%A3%E3%81%8F%E6%A0%AA365/id1545300927",
+            ch_play: "https://play.google.com/store/apps/details?id=jp.co.sbisec.clickkabu365.Android",
+        }
 
     },
     {
@@ -207,6 +210,10 @@ const showCases = [
         description: "Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend and backend dev are top-notch.",
         tech: "Xamarin, .NET MAUI",
         date: "2023",
+        ref: {
+            app_store: "https://apps.apple.com/jp/app/sbi%E8%A8%BC%E5%88%B8-%E5%8F%96%E5%BC%95%E6%89%80cfd-%E3%82%A2%E3%83%97%E3%83%AA-%E3%81%8F%E3%82%8A%E3%81%A3%E3%81%8F%E6%A0%AA365/id1545300927",
+            ch_play: "https://play.google.com/store/apps/details?id=jp.co.sbisec.clickkabu365.Android",
+        }
     },
     {
         name: "SBI CFD",
@@ -220,11 +227,15 @@ const showCases = [
         }
     },
     {
-        name: "Agrre",
+        name: "Agree",
         imgPath: '/images/line-cfd.png',
         description: "Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend and backend dev are top-notch.",
         tech: "Xamarin, .NET MAUI",
         date: "2023",
+        ref: {
+            app_store: "https://apps.apple.com/jp/app/sbi%E8%A8%BC%E5%88%B8-%E5%8F%96%E5%BC%95%E6%89%80cfd-%E3%82%A2%E3%83%97%E3%83%AA-%E3%81%8F%E3%82%8A%E3%81%A3%E3%81%8F%E6%A0%AA365/id1545300927",
+            ch_play: "https://play.google.com/store/apps/details?id=jp.co.sbisec.clickkabu365.Android",
+        }
     },
 ]
 const testimonials = [
