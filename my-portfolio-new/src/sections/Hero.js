@@ -51,6 +51,7 @@ export default function Hero() {
                 </span>
               </div>
             </div>
+
             <TypingTextSwitcher />
 
             <div className="absolute left-[10px] top-[-50px] animate-float-slow">
