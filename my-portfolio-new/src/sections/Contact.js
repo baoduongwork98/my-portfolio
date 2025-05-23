@@ -1,78 +1,103 @@
-// app/components/ContactMe.tsx
 'use client';
 
-import { cn } from "@/lib/utils";
-import { Button } from '@/components/ui/button';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 export default function Contact() {
-  return (
-    <section
-      id="contact"
-      className="container py-24 space-y-8 px-4 sm:px-6 lg:px-8 w-screen mx-auto h-auto lg:h-screen"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="space-y-4 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Contact Me</h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-              I'd love to hear from you! Feel free to send me a message.
-            </p>
-          </div>
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
 
-          <form
-            className="space-y-6"
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert('Form submitted! (You can connect this to a backend)');
-            }}
-          >
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    setFormData({ name: '', email: '', message: '' });
+  };
+
+  return (
+    <section id="contact" className="py-20 px-6 md:px-10">
+      <div className="max-w-3xl mx-auto text-center">
+        <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
+        <p className="text-muted-foreground mb-10">
+          I'd love to hear from you. Whether you have a question or just want to
+          say hi.
+        </p>
+
+        <div className="p-6 md:p-10 rounded-2xl shadow-lg text-black dark:text-white bg-white dark:bg-zinc-900">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-left mb-1">
-                Your Name
+              <label
+                className="block text-left text-sm font-medium mb-1"
+                htmlFor="name"
+              >
+                Name
               </label>
               <input
                 type="text"
                 id="name"
+                name="name"
                 required
-                className="w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full text-black rounded-xl border border-border bg-gray-300 p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-left mb-1">
-                Your Email
+              <label
+                className="block text-left text-sm font-medium mb-1"
+                htmlFor="email"
+              >
+                Email
               </label>
               <input
                 type="email"
                 id="email"
+                name="email"
                 required
-                className="w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full text-black rounded-xl border border-border bg-gray-300 p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-left mb-1">
+              <label
+                className="block text-left text-sm font-medium mb-1"
+                htmlFor="message"
+              >
                 Message
               </label>
               <textarea
                 id="message"
-                rows={4}
+                name="message"
+                rows="4"
                 required
-                className="w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              ></textarea>
+                value={formData.message}
+                onChange={handleChange}
+                className="w-full rounded-xl text-black  border border-border bg-gray-300 p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              />
             </div>
 
-            <Button type="submit" className="w-full">
+            <button
+              type="submit"
+              className="w-full bg-primary text-white dark:text-black rounded-xl py-3 font-medium hover:bg-primary/90 transition-colors"
+            >
               Send Message
-            </Button>
+            </button>
           </form>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
